@@ -21,15 +21,17 @@
                 android:layout_width="120dp"
                 android:layout_height="match_parent"
                 android:gravity="fill_vertical"
-                android:text="货物类别"
+                android:text="途径地"
                 android:textColor="@color/textBlack"
                 android:textSize="14sp" />
 
             <EditText
-                android:id="@+id/et_addgoods_type"
+                android:id="@+id/et_tujindi"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@null"
+                android:ellipsize="end"
+                android:maxLines="2"
                 android:gravity="end|center_vertical"
                 android:textColor="@color/textBlack"
                 android:textSize="14sp"
@@ -50,161 +52,12 @@
                 android:layout_width="120dp"
                 android:layout_height="match_parent"
                 android:gravity="fill_vertical"
-                android:text="数量"
+                android:text="希望货物类别"
                 android:textColor="@color/textBlack"
                 android:textSize="14sp" />
 
             <EditText
-                android:id="@+id/et_addgoods_num"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@null"
-                android:gravity="end|center_vertical"
-                android:textColor="@color/textBlack"
-                android:textSize="14sp"
-                android:hint="点击输入" />
-
-        </LinearLayout>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="0.5dp"
-            android:background="@color/line_color" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="120dp"
-                android:layout_height="match_parent"
-                android:gravity="fill_vertical"
-                android:text="重量"
-                android:textColor="@color/textBlack"
-                android:textSize="14sp" />
-
-            <EditText
-                android:id="@+id/et_addgoods_weight"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@null"
-                android:gravity="end|center_vertical"
-                android:textColor="@color/textBlack"
-                android:textSize="14sp"
-                android:hint="点击输入"/>
-
-        </LinearLayout>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="0.5dp"
-            android:background="@color/line_color" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="120dp"
-                android:layout_height="match_parent"
-                android:gravity="fill_vertical"
-                android:text="包装形式"
-                android:textColor="@color/textBlack"
-                android:textSize="14sp" />
-
-            <EditText
-                android:id="@+id/et_addgoods_baozhuangtype"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@null"
-                android:gravity="end|center_vertical"
-                android:textColor="@color/textBlack"
-                android:textSize="14sp"
-                android:hint="点击输入" />
-
-        </LinearLayout>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="0.5dp"
-            android:background="@color/line_color" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="120dp"
-                android:layout_height="match_parent"
-                android:gravity="fill_vertical"
-                android:text="包装尺寸"
-                android:textColor="@color/textBlack"
-                android:textSize="14sp" />
-
-            <EditText
-                android:id="@+id/et_addgoods_goodssize"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@null"
-                android:gravity="end|center_vertical"
-                android:textColor="@color/textBlack"
-                android:textSize="14sp"
-                android:hint="点击输入" />
-
-        </LinearLayout>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="0.5dp"
-            android:background="@color/line_color" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="120dp"
-                android:layout_height="match_parent"
-                android:gravity="fill_vertical"
-                android:text="发货时间"
-                android:textColor="@color/textBlack"
-                android:textSize="14sp" />
-
-            <TextView
-                android:id="@+id/et_addgoods_time"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@null"
-                android:gravity="end|center_vertical"
-                android:textColor="@color/textBlack"
-                android:textSize="14sp"
-                android:hint="点击输入" />
-
-        </LinearLayout>
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="0.5dp"
-            android:background="@color/line_color" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="120dp"
-                android:layout_height="match_parent"
-                android:gravity="fill_vertical"
-                android:text="收货时间"
-                android:textColor="@color/textBlack"
-                android:textSize="14sp" />
-
-            <TextView
-                android:id="@+id/et_addgoods_time_two"
+                android:id="@+id/et_huowuleibie"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@null"
@@ -234,7 +87,7 @@
                 android:textSize="14sp" />
 
             <TextView
-                android:id="@+id/et_addgoods_money"
+                android:id="@+id/et_yunfeixianzhi"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@null"
@@ -259,12 +112,157 @@
                 android:layout_width="120dp"
                 android:layout_height="match_parent"
                 android:gravity="fill_vertical"
-                android:text="发货地点"
+                android:text="空余吨位"
                 android:textColor="@color/textBlack"
                 android:textSize="14sp" />
 
             <EditText
-                android:id="@+id/et_addgoods_location"
+                android:id="@+id/et_konyudunwei"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@null"
+                android:gravity="end|center_vertical"
+                android:textColor="@color/textBlack"
+                android:textSize="14sp"
+                android:hint="点击输入" />
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="@color/line_color" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="120dp"
+                android:layout_height="match_parent"
+                android:gravity="fill_vertical"
+                android:text="目的地"
+                android:textColor="@color/textBlack"
+                android:textSize="14sp" />
+
+            <EditText
+                android:id="@+id/et_mudidi"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@null"
+                android:gravity="end|center_vertical"
+                android:textColor="@color/textBlack"
+                android:textSize="14sp"
+                android:hint="点击输入" />
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="@color/line_color" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="120dp"
+                android:layout_height="match_parent"
+                android:gravity="fill_vertical"
+                android:text="发车时间"
+                android:textColor="@color/textBlack"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/et_facheshijian"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@null"
+                android:gravity="end|center_vertical"
+                android:textColor="@color/textBlack"
+                android:textSize="14sp"
+                android:hint="点击输入" />
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="120dp"
+                android:layout_height="match_parent"
+                android:gravity="fill_vertical"
+                android:text="到达时间"
+                android:textColor="@color/textBlack"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/et_daodashijian"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@null"
+                android:gravity="end|center_vertical"
+                android:textColor="@color/textBlack"
+                android:textSize="14sp"
+                android:hint="点击输入" />
+
+        </LinearLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="@color/line_color" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="120dp"
+                android:layout_height="match_parent"
+                android:gravity="fill_vertical"
+                android:text="出发地"
+                android:textColor="@color/textBlack"
+                android:textSize="14sp" />
+
+            <EditText
+                android:id="@+id/et_chufadi"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@null"
+                android:gravity="end|center_vertical"
+                android:textColor="@color/textBlack"
+                android:textSize="14sp"
+                android:hint="点击输入" />
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="@color/line_color" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="120dp"
+                android:layout_height="match_parent"
+                android:gravity="fill_vertical"
+                android:text="车厢尺寸"
+                android:textColor="@color/textBlack"
+                android:textSize="14sp" />
+
+            <EditText
+                android:id="@+id/et_chexianchicun"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@null"
@@ -289,12 +287,42 @@
                 android:layout_width="120dp"
                 android:layout_height="match_parent"
                 android:gravity="fill_vertical"
-                android:text="收货地点"
+                android:text="汽车型号"
                 android:textColor="@color/textBlack"
                 android:textSize="14sp" />
 
             <EditText
-                android:id="@+id/et_addgoods_locationtwo"
+                android:id="@+id/et_qichexinhao"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@null"
+                android:gravity="end|center_vertical"
+                android:textColor="@color/textBlack"
+                android:textSize="14sp"
+                android:hint="点击输入"/>
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="@color/line_color" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="120dp"
+                android:layout_height="match_parent"
+                android:gravity="fill_vertical"
+                android:text="运输吨位"
+                android:textColor="@color/textBlack"
+                android:textSize="14sp" />
+
+            <EditText
+                android:id="@+id/et_yunshudunwei"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@null"
@@ -311,9 +339,10 @@
             android:background="@color/line_color" />
 
         <Button
-            android:id="@+id/btn_addgoods"
+            android:id="@+id/btn_adddrive"
             android:text="确定"
             android:textColor="@color/white"
+            android:layout_marginBottom="50dp"
             android:layout_marginTop="30dp"
             android:background="@drawable/shape_circle_fogetpsw_btn_bg"
             android:layout_gravity="center_horizontal"
