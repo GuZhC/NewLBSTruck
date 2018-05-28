@@ -19,4 +19,5 @@
     <color name="color_dark_gray">#aaa</color>
     <color name="bg_white">#ffffff</color>
     <color name="color_dark_black">#313131</color>
+    <color name="line_color">#EEEEEE</color>
 </resources>
