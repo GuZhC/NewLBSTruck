@@ -9,6 +9,7 @@ import android.widget.LinearLayout;
 import com.ashokvarma.bottomnavigation.BottomNavigationBar;
 import com.ashokvarma.bottomnavigation.BottomNavigationItem;
 import com.bysj.newlbstruck.Fragment.MeFragment;
+import com.bysj.newlbstruck.Fragment.MyoderFragmen;
 import com.bysj.newlbstruck.Fragment.NeaberFragment;
 import com.bysj.newlbstruck.R;
 import com.bysj.newlbstruck.adapter.ViewPagerAdapter;
@@ -46,6 +47,7 @@ public class MainActivity extends AppCompatActivity {
                 .setBarBackgroundColor(R.color.white);//默认背景色
         mBottomNavigationBar
                 .addItem(new BottomNavigationItem(R.mipmap.main_icon_one, R.string.tab_one).setActiveColorResource(R.color.colorPrimary))
+                .addItem(new BottomNavigationItem(R.mipmap.main_icon_one, R.string.tab_oder).setActiveColorResource(R.color.colorPrimary))
                 .addItem(new BottomNavigationItem(R.mipmap.main_icon_two, R.string.tab_two).setActiveColorResource(R.color.colorPrimary))
                 .addItem(new BottomNavigationItem(R.mipmap.main_icon_four, R.string.tab_three).setActiveColorResource(R.color.colorPrimary))
                 .setFirstSelectedPosition(0)//设置默认选择的按钮
@@ -85,6 +87,7 @@ public class MainActivity extends AppCompatActivity {
         });
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
         adapter.addFragment(new ListFragment());
+        adapter.addFragment(new MyoderFragmen());
         adapter.addFragment(new NeaberFragment());
         adapter.addFragment(new MeFragment());
         viewPager.setAdapter(adapter);
