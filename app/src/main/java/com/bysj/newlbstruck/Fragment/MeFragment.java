@@ -18,6 +18,6 @@ public class MeFragment extends BaseFragment {
 
     @Override
     protected void init(Bundle savedInstanceState) {
-
+//        System.out.println();
     }
 }
