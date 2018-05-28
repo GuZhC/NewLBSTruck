@@ -95,7 +95,7 @@ public class LoginActivity extends BaseActivity {
         MyLoader.showLoading(this);
         User user = new User();
         user.setUsername(etLoginPhone.getText().toString());
-        user.setPassword(etLoginPsw.getText().toString());
+        user.setPassword(etLoginPsw.getText().toString());  //
         user.login(new SaveListener<User>() {
             @Override
             public void done(User s, BmobException e) {
