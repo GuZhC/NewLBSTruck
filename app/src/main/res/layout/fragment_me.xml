@@ -1,6 +1,250 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
 
+    <android.support.v7.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:background="@color/colorPrimary">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="28dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="个人中心"
+                android:textColor="@color/white"
+                android:textSize="18sp" />
+
+            <ImageView
+                android:id="@+id/me_toolbar_set"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginRight="8dp"
+                android:layout_marginTop="3dp"
+                android:gravity="center"
+                android:padding="8dp"
+                android:src="@mipmap/me_out_fff" />
+        </LinearLayout>
+    </android.support.v7.widget.Toolbar>
+
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/white"
+            android:orientation="vertical">
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="15dp"
+                android:background="@color/backgroundGray" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:drawablePadding="8dp"
+                    android:text="用户姓名"
+                    android:textColor="@color/textBlack"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/username"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawablePadding="8dp"
+                    android:text="刘xxx"
+                    android:textColor="@color/textBlack"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="15dp"
+                android:background="@color/backgroundGray" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:drawablePadding="8dp"
+                    android:text="手机号码"
+                    android:textColor="@color/textBlack"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/userphone"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawablePadding="8dp"
+                    android:text="18428325664"
+                    android:textColor="@color/textBlack"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:background="@color/backgroundGray" />
+
+            <!--<LinearLayout-->
+            <!--android:visibility="gone"-->
+            <!--android:id="@+id/l_me_location"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="52dp"-->
+            <!--android:layout_marginLeft="15dp"-->
+            <!--android:layout_marginRight="15dp"-->
+            <!--android:gravity="center_vertical"-->
+            <!--android:orientation="horizontal">-->
+
+            <!--<TextView-->
+            <!--android:layout_width="0dp"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_weight="1"-->
+            <!--android:drawableLeft="@mipmap/me_location"-->
+            <!--android:drawablePadding="8dp"-->
+            <!--android:text="我的地址"-->
+            <!--android:textColor="@color/textBlack"-->
+            <!--android:textSize="14sp" />-->
+
+            <!--<ImageView-->
+            <!--android:layout_width="8dp"-->
+            <!--android:layout_height="16dp"-->
+            <!--android:src="@mipmap/me_go_normal" />-->
+            <!--</LinearLayout>-->
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:background="@color/darktGray" />
+
+            <LinearLayout
+                android:id="@+id/l_me_safety"
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:drawableLeft="@mipmap/me_safety"
+                    android:drawablePadding="8dp"
+                    android:text="修改用户信息"
+                    android:textColor="@color/textBlack"
+                    android:textSize="14sp" />
+
+                <ImageView
+                    android:layout_width="8dp"
+                    android:layout_height="16dp"
+                    android:src="@mipmap/me_go_normal" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:background="@color/darktGray" />
+
+            <LinearLayout
+                android:id="@+id/l_me_news"
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:drawableLeft="@mipmap/me_news"
+                    android:drawablePadding="8dp"
+                    android:text="关于软件"
+                    android:textColor="@color/textBlack"
+                    android:textSize="14sp" />
+
+                <ImageView
+                    android:layout_width="8dp"
+                    android:layout_height="16dp"
+                    android:src="@mipmap/me_go_normal" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:background="@color/darktGray" />
+
+            <LinearLayout
+                android:id="@+id/l_me_aboutme"
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:drawableLeft="@mipmap/me_aboutme"
+                    android:drawablePadding="8dp"
+                    android:text="退出程序"
+                    android:textColor="@color/textBlack"
+                    android:textSize="14sp" />
+
+                <ImageView
+                    android:layout_width="8dp"
+                    android:layout_height="16dp"
+                    android:src="@mipmap/me_go_normal" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="20dp"
+                android:background="@color/backgroundGray" />
+        </LinearLayout>
+    </android.support.v4.widget.NestedScrollView>
 </LinearLayout>

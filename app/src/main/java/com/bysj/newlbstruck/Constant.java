@@ -19,5 +19,7 @@ public class Constant {
 	public static final String PREFERENCE_NAME = "LoanSharedpreference"; //todo  命名sharedperference
 	public static final String USER_NAME = "name";
 	public static final String USER_PSW = "psw";
+	public static final String USER_ID = "userid";
+	public static final String IS_DRIV = "isdriv";
 
 }

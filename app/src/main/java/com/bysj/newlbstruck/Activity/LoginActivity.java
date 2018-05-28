@@ -100,6 +100,8 @@ public class LoginActivity extends BaseActivity {
             @Override
             public void done(User s, BmobException e) {
                 if (e == null) {
+                    SharedPreferenceUtil.instance(LoginActivity.this).saveString(Constant.USER_ID, s.getObjectId());
+                    SharedPreferenceUtil.instance(LoginActivity.this).saveBoolean(Constant.IS_DRIV, s.isDrive());
                     startActivity(new Intent(LoginActivity.this, MainActivity.class));
                     finish();
                 } else {
