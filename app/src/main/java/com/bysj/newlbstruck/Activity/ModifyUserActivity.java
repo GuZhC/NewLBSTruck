@@ -53,9 +53,6 @@ public class ModifyUserActivity extends BaseActivity {
         name = eEt_fogetpsw_name.getText().toString();
         psw = eEt_fogetpsw_psw.getText().toString();
         pswtwo = eEt_fogetpsw_pswtwo.getText().toString();
-        System.out.println(name);
-        System.out.println(psw);
-        System.out.println(pswtwo);
         if (TextUtils.isEmpty(pswtwo) || TextUtils.isEmpty(psw) || TextUtils.isEmpty(name)) {
             ToastUtils.showError(ModifyUserActivity.this, "请填写您要修改的信息");
             return;

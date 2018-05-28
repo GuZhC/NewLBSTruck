@@ -103,6 +103,7 @@ public class LoginActivity extends BaseActivity {
                     SharedPreferenceUtil.instance(LoginActivity.this).saveString(Constant.USER_ID, s.getObjectId());
                     SharedPreferenceUtil.instance(LoginActivity.this).saveBoolean(Constant.IS_DRIV, s.isDrive());
                     startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                    MyLoader.stopLoading();
                     finish();
                 } else {
                     ToastUtils.showError(LoginActivity.this, "帐号或者密码错误");
