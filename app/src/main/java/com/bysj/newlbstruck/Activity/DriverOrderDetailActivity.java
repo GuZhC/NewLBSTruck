@@ -56,7 +56,7 @@ public class DriverOrderDetailActivity extends BaseActivity {
     TextView etRoute;
     @BindView(R.id.reflesh)
     SmartRefreshLayout reflesh;
-    
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -99,7 +99,7 @@ public class DriverOrderDetailActivity extends BaseActivity {
 
     private void setState() {
         etOrderState.setText(StateEnum.getState(driverOrder.getState()));
-        if (driverOrder.getDriverId() != null) {
+        if (driverOrder.getUserId() != null) {
             BmobQuery<User> query = new BmobQuery<User>();
             query.getObject(driverOrder.getUserId(), new QueryListener<User>() {
                 @Override

@@ -3,7 +3,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-
+    <!--<com.scwang.smartrefresh.layout.SmartRefreshLayout-->
+        <!--android:id="@+id/reflesh"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent">-->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -333,5 +336,57 @@
 
         </LinearLayout>
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:orientation="horizontal"
+            android:layout_gravity="center"
+            >
+
+            <Button
+                android:id="@+id/telphone"
+                android:layout_width="101dp"
+                android:clickable="false"
+                android:layout_height="44dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="420dp"
+                android:layout_marginLeft="10dp"
+                android:background="@drawable/shape_circle_fogetpsw_btn_bg"
+                android:gravity="center"
+                android:text="拨打电话"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+            <Button
+                android:id="@+id/see_route"
+                android:layout_width="101dp"
+                android:clickable="false"
+                android:layout_height="44dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="420dp"
+                android:layout_marginLeft="10dp"
+                android:background="@drawable/shape_circle_fogetpsw_btn_bg"
+                android:gravity="center"
+                android:text="查看路线"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+            <Button
+                android:id="@+id/jieta"
+                android:layout_width="101dp"
+                android:clickable="false"
+                android:layout_height="44dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="420dp"
+                android:layout_marginLeft="10dp"
+                android:background="@drawable/shape_circle_fogetpsw_btn_bg"
+                android:gravity="center"
+                android:text="接         他"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
     </LinearLayout>
+    <!--</com.scwang.smartrefresh.layout.SmartRefreshLayout>-->
 </android.support.v4.widget.NestedScrollView>

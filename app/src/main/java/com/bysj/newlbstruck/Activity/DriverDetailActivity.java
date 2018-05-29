@@ -48,8 +48,8 @@ public class DriverDetailActivity extends BaseActivity {
     TextView etDaodashijian;
     @BindView(R.id.user_name)
     TextView user_name;
-    @BindView(R.id.reflesh)
-    SmartRefreshLayout reflesh;
+//    @BindView(R.id.reflesh)
+//    SmartRefreshLayout reflesh;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,18 +58,18 @@ public class DriverDetailActivity extends BaseActivity {
         setBackBtn();
         setTitle("司机详情");
         initDetail();
-        reflesh.setOnLoadmoreListener(new OnLoadmoreListener() {
-            @Override
-            public void onLoadmore(RefreshLayout refreshlayout) {
-            }
-        });
-        reflesh.setOnRefreshListener(new OnRefreshListener() {
-            @Override
-            public void onRefresh(RefreshLayout refreshlayout) {
-                initDetail();
-                reflesh.finishRefresh(true);
-            }
-        });
+//        reflesh.setOnLoadmoreListener(new OnLoadmoreListener() {
+//            @Override
+//            public void onLoadmore(RefreshLayout refreshlayout) {
+//            }
+//        });
+//        reflesh.setOnRefreshListener(new OnRefreshListener() {
+//            @Override
+//            public void onRefresh(RefreshLayout refreshlayout) {
+//                initDetail();
+//                reflesh.finishRefresh(true);
+//            }
+//        });
     }
     private void initDetail() {
         driverOrder = (DriverOrder) getIntent().getSerializableExtra("order");

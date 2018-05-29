@@ -22,7 +22,7 @@ public class AllUserAdapter extends BaseQuickAdapter<UserOrder, BaseViewHolder> 
 
     @Override
     protected void convert(BaseViewHolder helper, UserOrder item) {
-        helper.setText(R.id.tv_nearby_recycler_title, item.getObjectId());
+        helper.setText(R.id.tv_nearby_recycler_title, item.getUserName());
         helper.setText(R.id.tv_nearby_recycler_send, item.getDeliveryPlace());
         helper.setText(R.id.tv_nearby_recycler_access, item.getReceiptPlace());
 //        for( StateEnum stateEnum : StateEnum.values()){

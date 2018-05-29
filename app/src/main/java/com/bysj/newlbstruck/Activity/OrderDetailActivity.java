@@ -12,6 +12,10 @@ import com.bysj.newlbstruck.Bean.User;
 import com.bysj.newlbstruck.Bean.UserOrder;
 import com.bysj.newlbstruck.R;
 import com.bysj.newlbstruck.utils.StateEnum;
+import com.scwang.smartrefresh.layout.SmartRefreshLayout;
+import com.scwang.smartrefresh.layout.api.RefreshLayout;
+import com.scwang.smartrefresh.layout.listener.OnLoadmoreListener;
+import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -49,6 +53,8 @@ public class OrderDetailActivity extends BaseActivity {
     TextView etAddgoodsLocation;
     @BindView(R.id.et_addgoods_locationtwo)
     TextView etAddgoodsLocationtwo;
+    @BindView(R.id.reflesh)
+    SmartRefreshLayout reflesh;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,6 +65,20 @@ public class OrderDetailActivity extends BaseActivity {
         setTitle("订单详情");
         initDetail();
         setState();
+
+        reflesh.setOnLoadmoreListener(new OnLoadmoreListener() {
+            @Override
+            public void onLoadmore(RefreshLayout refreshlayout) {
+            }
+        });
+        reflesh.setOnRefreshListener(new OnRefreshListener() {
+            @Override
+            public void onRefresh(RefreshLayout refreshlayout) {
+                initDetail();
+                setState();
+                reflesh.finishRefresh(true);
+            }
+        });
     }
 
     private void initDetail() {

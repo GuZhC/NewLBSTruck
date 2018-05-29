@@ -3,7 +3,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-
+    <com.scwang.smartrefresh.layout.SmartRefreshLayout
+        android:id="@+id/reflesh"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -384,4 +387,6 @@
         </LinearLayout>
 
     </LinearLayout>
+    </com.scwang.smartrefresh.layout.SmartRefreshLayout>
 </android.support.v4.widget.NestedScrollView>
+

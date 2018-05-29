@@ -37,6 +37,8 @@ public class MeFragment extends BaseFragment {
     LinearLayout lMeNews;
     @BindView(R.id.l_me_aboutme)
     LinearLayout lMeAboutme;
+    @BindView(R.id.driversend)
+    LinearLayout driversend;
 
     @Override
     protected int getContentViewLayoutID() {
