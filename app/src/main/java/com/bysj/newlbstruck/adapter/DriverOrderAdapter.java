@@ -17,7 +17,7 @@ import java.util.List;
 
 public class DriverOrderAdapter  extends BaseQuickAdapter<DriverOrder, BaseViewHolder> {
     public DriverOrderAdapter(@Nullable List<DriverOrder> data) {
-        super(R.layout.item_order, data);
+        super(R.layout.item_driver_send, data);
     }
 
     @Override

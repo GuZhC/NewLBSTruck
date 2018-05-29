@@ -15,9 +15,10 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:id="@+id/order_title"
             android:layout_marginRight="10dp"
             android:gravity="center"
-            android:text="所有订单"
+            android:text="订单"
             android:textColor="@color/white"
             android:textSize="18sp" />
     </android.support.v7.widget.Toolbar>
@@ -60,44 +61,11 @@
         android:id="@+id/reflesh"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-
-        <!--<LinearLayout-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:orientation="vertical">-->
-            <!--<TextView-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:text="未接订单"-->
-                <!--android:layout_margin="10dp"/>-->
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/home_myorder_all"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
             </android.support.v7.widget.RecyclerView>
-        <!--</LinearLayout>-->
-
-
-        <!--<LinearLayout-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:orientation="vertical">-->
-            <!--<TextView-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:text="已接订单"-->
-                <!--android:layout_margin="10dp"/>-->
-            <!--<android.support.v7.widget.RecyclerView-->
-                <!--android:id="@+id/home_myorder_all_jd"-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="wrap_content">-->
-
-            <!--</android.support.v7.widget.RecyclerView>-->
-        <!--</LinearLayout>-->
-
-
-
-
     </com.scwang.smartrefresh.layout.SmartRefreshLayout>
 
 </LinearLayout>

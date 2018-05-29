@@ -8,7 +8,6 @@
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
-
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
@@ -18,7 +17,6 @@
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
     <uses-permission android:name="android.permission.INTERACT_ACROSS_USERS_FULL" />
 
-
     <application
         android:name=".App"
         android:allowBackup="true"
@@ -27,15 +25,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
-
         <meta-data
             android:name="com.amap.api.v2.apikey"
             android:value="19577cd82a506c6aa09ea90ef76a96d9" />
 
         <activity android:name=".Activity.MainActivity" />
-        <activity
-            android:name=".Activity.LoginActivity" />
+        <activity android:name=".Activity.LoginActivity" />
         <activity
             android:name=".Activity.WelcomeActivity"
             android:theme="@style/AppTheme.NoBar">
@@ -53,10 +48,12 @@
         <activity android:name=".Activity.DriverOrderDetailActivity" />
         <activity android:name=".Activity.PublishDriveActivity" />
         <activity android:name=".Activity.UserDetailActivity" />
-        <activity android:name=".Activity.DriverDetailActivity"></activity>
+        <activity android:name=".Activity.DriverDetailActivity" />
 
         <!-- 定位需要的服务 使用2.0的定位需要加上这个 -->
         <service android:name="com.amap.api.location.APSService" />
+
+        <activity android:name=".Activity.DriverSendActivity"></activity>
     </application>
 
 </manifest>

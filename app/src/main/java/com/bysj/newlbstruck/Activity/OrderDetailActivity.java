@@ -44,8 +44,8 @@ public class OrderDetailActivity extends BaseActivity {
     TextView etOrderState;
     @BindView(R.id.et_driver)
     TextView eTDriver;
-    @BindView(R.id.et_route)
-    TextView etRoute;
+//    @BindView(R.id.et_route)
+//    TextView etRoute;
 
     @BindView(R.id.et_addgoods_money)
     TextView etAddgoodsMoney;
@@ -97,36 +97,42 @@ public class OrderDetailActivity extends BaseActivity {
 
     private void setState() {
         etOrderState.setText(StateEnum.getState(userOrder.getState()));
-        if (userOrder.getDriverId() != null) {
-            BmobQuery<User> query = new BmobQuery<User>();
-            query.getObject(userOrder.getDriverId(), new QueryListener<User>() {
-                @Override
-                public void done(User object, BmobException e) {
-                    if (e == null) {
-                        eTDriver.setText(object.getUsername());
-                    } else {
-                        Log.i("bmob", "失败：" + e.getMessage() + "," + e.getErrorCode());
-                    }
-                }
-            });
+        if(userOrder.getDriverName()!=null){
+            eTDriver.setText(userOrder.getDriverName());
         }else {
             eTDriver.setText("暂无");
         }
-        if (userOrder.getDriverOrderId() != null) {
-            BmobQuery<DriverOrder> query = new BmobQuery<DriverOrder>();
-            query.getObject(userOrder.getDriverOrderId(), new QueryListener<DriverOrder>() {
-                @Override
-                public void done(DriverOrder object, BmobException e) {
-                    if (e == null) {
-                        etRoute.setText(object.getDeparturePlace() + "——>" + object.getDestination());
-                    } else {
-                        Log.i("bmob", "失败：" + e.getMessage() + "," + e.getErrorCode());
-                    }
-                }
 
-            });
-        }else {
-            eTDriver.setText("暂无");
-        }
+//        if (userOrder.getDriverId() != null) {
+//            BmobQuery<User> query = new BmobQuery<User>();
+//            query.getObject(userOrder.getDriverId(), new QueryListener<User>() {
+//                @Override
+//                public void done(User object, BmobException e) {
+//                    if (e == null) {
+//                        eTDriver.setText(object.getUsername());
+//                    } else {
+//                        Log.i("bmob", "失败：" + e.getMessage() + "," + e.getErrorCode());
+//                    }
+//                }
+//            });
+//        }else {
+//            eTDriver.setText("暂无");
+//        }
+//        if (userOrder.getDriverOrderId() != null) {
+//            BmobQuery<DriverOrder> query = new BmobQuery<DriverOrder>();
+//            query.getObject(userOrder.getDriverOrderId(), new QueryListener<DriverOrder>() {
+//                @Override
+//                public void done(DriverOrder object, BmobException e) {
+//                    if (e == null) {
+//                        etRoute.setText(object.getDeparturePlace() + "——>" + object.getDestination());
+//                    } else {
+//                        Log.i("bmob", "失败：" + e.getMessage() + "," + e.getErrorCode());
+//                    }
+//                }
+//
+//            });
+//        }else {
+//            etRoute.setText("暂无");
+//        }
     }
 }

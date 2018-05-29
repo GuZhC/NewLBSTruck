@@ -26,7 +26,8 @@ public class UserOrder  extends BmobObject implements Serializable {
     private String DeliveryPlace;
     private String weight;
     private String DriverId;
-    private String DriverOrderId;
+    private String UserPhone;
+    private String DriverName;
     private int state;
 
     public String getCategoryGoods() {
@@ -165,12 +166,12 @@ public class UserOrder  extends BmobObject implements Serializable {
         DriverId = driverId;
     }
 
-    public String getDriverOrderId() {
-        return DriverOrderId;
+    public String getUserPhone() {
+        return UserPhone;
     }
 
-    public void setDriverOrderId(String driverOrderId) {
-        DriverOrderId = driverOrderId;
+    public void setUserPhone(String userPhone) {
+        UserPhone = userPhone;
     }
 
     public String getUserName() {
@@ -179,5 +180,13 @@ public class UserOrder  extends BmobObject implements Serializable {
 
     public void setUserName(String userName) {
         UserName = userName;
+    }
+
+    public String getDriverName() {
+        return DriverName;
+    }
+
+    public void setDriverName(String driverName) {
+        DriverName = driverName;
     }
 }

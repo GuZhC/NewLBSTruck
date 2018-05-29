@@ -22,5 +22,6 @@ public class Constant {
 	public static final String USER_ID = "userid";
 	public static final String IS_DRIV = "isdriv";
 	public static final String NAME_USER = "name_user";
+	public static final String PHONE = "phone";
 
 }

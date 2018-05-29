@@ -88,6 +88,7 @@ public class UserDetailActivity extends BaseActivity {
         etAddgoodsLocation.setText(userOrder.getDeliveryPlace());
         etAddgoodsLocationtwo.setText(userOrder.getReceiptPlace());
         user_name.setText(userOrder.getUserName());
+
     }
 
     @OnClick({R.id.telphone, R.id.see_route, R.id.jieta})
@@ -102,7 +103,9 @@ public class UserDetailActivity extends BaseActivity {
 
     private void ReceiptOrder() {
         String userid = SharedPreferenceUtil.instance(this).getString(Constant.USER_ID);
+        String username = SharedPreferenceUtil.instance(this).getString(Constant.NAME_USER);
         userOrder.setDriverId(userid);
+        userOrder.setDriverName(username);
         userOrder.setState(1);
         if (userid != null && userOrder.getObjectId() != null) {
             userOrder.update(userOrder.getObjectId(), new UpdateListener() {

@@ -213,6 +213,8 @@ public class PublishDriveActivity extends BaseActivity {
         } else {
             DriverOrder driverOrder = new DriverOrder();
             driverOrder.setState(0);
+            String phone = SharedPreferenceUtil.instance(this).getString(Constant.PHONE);
+            driverOrder.setDriverPhone(phone);
             driverOrder.setArrivalTime(etDaodashijian.getText().toString());
             driverOrder.setDriverId(SharedPreferenceUtil.instance(this).getString(Constant.USER_ID));
             driverOrder.setStartPointLat(String.valueOf( mStartLocation.getLatitude()));

@@ -8,6 +8,7 @@ import android.widget.TextView;
 
 import com.bysj.newlbstruck.Activity.AboutActivity;
 import com.bysj.newlbstruck.Activity.BaseFragment;
+import com.bysj.newlbstruck.Activity.DriverSendActivity;
 import com.bysj.newlbstruck.Activity.LoginActivity;
 import com.bysj.newlbstruck.Activity.ModifyUserActivity;
 import com.bysj.newlbstruck.Bean.User;
@@ -39,6 +40,7 @@ public class MeFragment extends BaseFragment {
     LinearLayout lMeAboutme;
     @BindView(R.id.driversend)
     LinearLayout driversend;
+    private Boolean isDriv;
 
     @Override
     protected int getContentViewLayoutID() {
@@ -56,10 +58,14 @@ public class MeFragment extends BaseFragment {
                 eUserphone.setText(user.getMobilePhoneNumber());
             }
         });
+        isDriv = SharedPreferenceUtil.instance(getContext()).getBoolean(Constant.IS_DRIV);
+        if (isDriv) {
+            driversend.setVisibility(View.VISIBLE);
+        }
     }
 
     @OnClick({
-            R.id.l_me_safety, R.id.l_me_news, R.id.l_me_aboutme, R.id.me_toolbar_set})
+            R.id.l_me_safety, R.id.l_me_news, R.id.l_me_aboutme, R.id.me_toolbar_set, R.id.driversend})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.me_toolbar_set:
@@ -79,6 +85,9 @@ public class MeFragment extends BaseFragment {
 //                System.exit(0);
                 startActivity(new Intent(getContext(), LoginActivity.class));
                 getActivity().finish();
+                break;
+            case R.id.driversend:
+                startActivity(new Intent(getContext(), DriverSendActivity.class));
                 break;
         }
     }

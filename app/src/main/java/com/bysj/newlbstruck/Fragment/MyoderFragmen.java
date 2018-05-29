@@ -6,6 +6,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
+import android.widget.TextView;
 
 import com.bysj.newlbstruck.Activity.BaseFragment;
 import com.bysj.newlbstruck.Activity.DriverOrderDetailActivity;
@@ -42,10 +43,10 @@ public class MyoderFragmen extends BaseFragment {
     RecyclerView homeMyorderAll;
     @BindView(R.id.reflesh)
     SmartRefreshLayout reflesh;
+    @BindView(R.id.order_title)
+    TextView order_title;
     private OrderAdapter adapter;
-    private DriverOrderAdapter driverOrderAdapter;
     private List<UserOrder> datas;
-    private List<DriverOrder> driverdatas;
     private Boolean isDriv;
 
     @Override
@@ -56,7 +57,12 @@ public class MyoderFragmen extends BaseFragment {
     @Override
     protected void init(Bundle savedInstanceState) {
         isDriv = SharedPreferenceUtil.instance(getContext()).getBoolean(Constant.IS_DRIV);
-        LoadData();
+        if(isDriv){
+            order_title.setText("所接订单");
+        }else {
+            order_title.setText("所发订单");
+        }
+        setUserData();
         reflesh.setOnLoadmoreListener(new OnLoadmoreListener() {
             @Override
             public void onLoadmore(RefreshLayout refreshlayout) {
@@ -65,54 +71,55 @@ public class MyoderFragmen extends BaseFragment {
         reflesh.setOnRefreshListener(new OnRefreshListener() {
             @Override
             public void onRefresh(RefreshLayout refreshlayout) {
-                LoadData();
+                setUserData();
                 reflesh.finishRefresh(true);
             }
         });
     }
 
-    private void LoadData(){
-        datas = new ArrayList<>();
-        driverdatas = new ArrayList<>();
-        if (isDriv) {
-            setDriverData();
-        } else {
-            setUserData();
-        }
-    }
+//    private void LoadData() {
+//        datas = new ArrayList<>();
+//        driverdatas = new ArrayList<>();
+//        setDriverData();
+//    }
 
-    private void setDriverData() {
-        BmobQuery<DriverOrder> query = new BmobQuery<DriverOrder>();
-        String userid = SharedPreferenceUtil.instance(getContext()).getString(Constant.USER_ID);
-        query.addWhereEqualTo("DriverId", userid);
-        query.setLimit(50);
-        query.findObjects(new FindListener<DriverOrder>() {
-            @Override
-            public void done(List<DriverOrder> object, BmobException e) {
-                if (e == null) {
-                    driverdatas.addAll(object);
-                    homeMyorderAll.setLayoutManager(new LinearLayoutManager(getContext()));
-                    driverOrderAdapter = new DriverOrderAdapter(driverdatas);
-                    driverOrderAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
-                        @Override
-                        public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-                            Intent intent = new Intent(getContext(), DriverOrderDetailActivity.class);
-                            intent.putExtra("order",driverdatas.get(position));
-                            startActivity(intent);
-                        }
-                    });
-                    homeMyorderAll.setAdapter(driverOrderAdapter);
-                } else {
-                    Log.i("bmob", "失败：" + e.getMessage() + "," + e.getErrorCode());
-                }
-            }
-        });
-    }
+//    private void setDriverData() {
+//        BmobQuery<DriverOrder> query = new BmobQuery<DriverOrder>();
+//        String userid = SharedPreferenceUtil.instance(getContext()).getString(Constant.USER_ID);
+//        query.addWhereEqualTo("DriverId", userid);
+//        query.setLimit(50);
+//        query.findObjects(new FindListener<DriverOrder>() {
+//            @Override
+//            public void done(List<DriverOrder> object, BmobException e) {
+//                if (e == null) {
+//                    driverdatas.addAll(object);
+//                    homeMyorderAll.setLayoutManager(new LinearLayoutManager(getContext()));
+//                    driverOrderAdapter = new DriverOrderAdapter(driverdatas);
+//                    driverOrderAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
+//                        @Override
+//                        public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
+//                            Intent intent = new Intent(getContext(), DriverOrderDetailActivity.class);
+//                            intent.putExtra("order", driverdatas.get(position));
+//                            startActivity(intent);
+//                        }
+//                    });
+//                    homeMyorderAll.setAdapter(driverOrderAdapter);
+//                } else {
+//                    Log.i("bmob", "失败：" + e.getMessage() + "," + e.getErrorCode());
+//                }
+//            }
+//        });
+//    }
 
     private void setUserData() {
+        datas = new ArrayList<>();
         BmobQuery<UserOrder> query = new BmobQuery<UserOrder>();
         String userid = SharedPreferenceUtil.instance(getContext()).getString(Constant.USER_ID);
-        query.addWhereEqualTo("UserId", userid);
+        if(isDriv){
+            query.addWhereEqualTo("DriverId", userid);
+        }else {
+            query.addWhereEqualTo("UserId", userid);
+        }
         query.setLimit(50);
         query.findObjects(new FindListener<UserOrder>() {
             @Override
@@ -120,12 +127,12 @@ public class MyoderFragmen extends BaseFragment {
                 if (e == null) {
                     datas.addAll(object);
                     homeMyorderAll.setLayoutManager(new LinearLayoutManager(getContext()));
-                    adapter = new OrderAdapter(datas);
+                    adapter = new OrderAdapter(datas,getContext());
                     adapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
                         @Override
                         public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
                             Intent intent = new Intent(getContext(), OrderDetailActivity.class);
-                            intent.putExtra("order",datas.get(position));
+                            intent.putExtra("order", datas.get(position));
                             startActivity(intent);
                         }
                     });

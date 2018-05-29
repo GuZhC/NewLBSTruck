@@ -26,7 +26,7 @@ public class DriverOrder  extends BmobObject {
     private String TransportTonnage;
     private int state;
     private String UserId;
-    private String UserOrderId;
+    private String DriverPhone;
 
     public String getArrivalTime() {
         return ArrivalTime;
@@ -172,12 +172,12 @@ public class DriverOrder  extends BmobObject {
         UserId = userId;
     }
 
-    public String getUserOrderId() {
-        return UserOrderId;
+    public String getDriverPhone() {
+        return DriverPhone;
     }
 
-    public void setUserOrderId(String userOrderId) {
-        UserOrderId = userOrderId;
+    public void setDriverPhone(String driverPhone) {
+        DriverPhone = driverPhone;
     }
 
     public String getDriverName() {

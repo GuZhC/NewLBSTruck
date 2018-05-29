@@ -257,6 +257,8 @@ public class PublishActivity extends BaseActivity {
 
             UserOrder userOrder = new UserOrder();
             userOrder.setState(0);
+            String phone = SharedPreferenceUtil.instance(this).getString(Constant.PHONE);
+            userOrder.setUserPhone(phone);
             userOrder.setCategoryGoods(etAddgoodsType.getText().toString());
             userOrder.setUserId(SharedPreferenceUtil.instance(this).getString(Constant.USER_ID));
             userOrder.setUserName(SharedPreferenceUtil.instance(this).getString(Constant.NAME_USER));
