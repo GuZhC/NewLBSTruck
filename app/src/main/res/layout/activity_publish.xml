@@ -315,6 +315,7 @@
             android:text="确定"
             android:textColor="@color/white"
             android:layout_marginTop="30dp"
+            android:layout_marginBottom="50dp"
             android:background="@drawable/shape_circle_fogetpsw_btn_bg"
             android:layout_gravity="center_horizontal"
             android:layout_width="260dp"
