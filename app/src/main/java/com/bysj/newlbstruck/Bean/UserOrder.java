@@ -1,12 +1,14 @@
 package com.bysj.newlbstruck.Bean;
 
+import java.io.Serializable;
+
 import cn.bmob.v3.BmobObject;
 
 /**
  * Created by liuchuan on 2018/5/28.
  */
 
-public class UserOrder  extends BmobObject {
+public class UserOrder  extends BmobObject implements Serializable {
     private String CategoryGoods;
     private String UserId;
     private String StartPointLng;

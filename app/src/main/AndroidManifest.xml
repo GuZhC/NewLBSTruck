@@ -33,7 +33,9 @@
         <activity android:name=".Activity.RegisterActivity" />
         <activity android:name=".Activity.AboutActivity" />
         <activity android:name=".Activity.ModifyUserActivity" />
-        <activity android:name=".Activity.PublishActivity"></activity>
+        <activity android:name=".Activity.PublishActivity" />
+        <activity android:name=".Activity.OrderDetailActivity" />
+        <activity android:name=".Activity.DriverOrderDetailActivity"></activity>
         <activity android:name=".Activity.PublishDriveActivity"></activity>
     </application>
 

@@ -7,10 +7,11 @@
     android:orientation="vertical">
 
     <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar2"
         android:layout_width="match_parent"
         android:layout_height="45dp"
-        android:background="@color/colorPrimary"
-        android:id="@+id/toolbar2">
+        android:background="@color/colorPrimary">
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -55,7 +56,25 @@
     <!--android:textSize="10dp" />-->
     <!--</LinearLayout>-->
 
+    <com.scwang.smartrefresh.layout.SmartRefreshLayout
+        android:id="@+id/reflesh"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/home_myorder_all"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
+        </android.support.v7.widget.RecyclerView>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/home_myorder_all_jd"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        </android.support.v7.widget.RecyclerView>
+
+    </com.scwang.smartrefresh.layout.SmartRefreshLayout>
 
 </LinearLayout>
