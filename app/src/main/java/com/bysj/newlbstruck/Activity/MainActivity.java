@@ -11,6 +11,7 @@ import com.ashokvarma.bottomnavigation.BottomNavigationItem;
 import com.bysj.newlbstruck.Fragment.MeFragment;
 import com.bysj.newlbstruck.Fragment.MyoderFragmen;
 import com.bysj.newlbstruck.Fragment.NeaberFragment;
+import com.bysj.newlbstruck.MyViewPager;
 import com.bysj.newlbstruck.R;
 import com.bysj.newlbstruck.adapter.ViewPagerAdapter;
 import com.bysj.newlbstruck.utils.ToastUtils;
@@ -21,7 +22,7 @@ import butterknife.ButterKnife;
 public class MainActivity extends AppCompatActivity {
 
     BottomNavigationBar mBottomNavigationBar;
-    ViewPager mViewpage;
+    MyViewPager mViewpage;
     @BindView(R.id.main)
     LinearLayout main;
     // 保存用户按返回键的时间

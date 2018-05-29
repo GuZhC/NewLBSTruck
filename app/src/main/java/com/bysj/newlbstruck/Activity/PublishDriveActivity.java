@@ -3,9 +3,13 @@ package com.bysj.newlbstruck.Activity;
 import android.content.Context;
 import android.os.Bundle;
 import android.os.IBinder;
+import android.text.Editable;
 import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.AdapterView;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -19,10 +23,15 @@ import com.bigkoo.pickerview.view.TimePickerView;
 import com.bysj.newlbstruck.Bean.DriverOrder;
 import com.bysj.newlbstruck.Constant;
 import com.bysj.newlbstruck.R;
+import com.bysj.newlbstruck.adapter.PoiAdapter;
+import com.bysj.newlbstruck.lbs.GaodeLbsLayerImpl;
+import com.bysj.newlbstruck.lbs.ILbsLayer;
+import com.bysj.newlbstruck.lbs.LocationInfo;
 import com.bysj.newlbstruck.utils.SharedPreferenceUtil;
 import com.bysj.newlbstruck.utils.ToastUtils;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
@@ -47,11 +56,11 @@ public class PublishDriveActivity extends BaseActivity {
     @BindView(R.id.et_konyudunwei)
     EditText etKonyudunwei;
     @BindView(R.id.et_mudidi)
-    EditText etMudidi;
+    AutoCompleteTextView etMudidi;
     @BindView(R.id.et_facheshijian)
     TextView etFacheshijian;
     @BindView(R.id.et_chufadi)
-    EditText etChufadi;
+    AutoCompleteTextView etChufadi;
     @BindView(R.id.et_chexianchicun)
     EditText etChexianchicun;
     @BindView(R.id.et_qichexinhao)
@@ -63,6 +72,12 @@ public class PublishDriveActivity extends BaseActivity {
     @BindView(R.id.et_daodashijian)
     TextView etDaodashijian;
 
+    private PoiAdapter mEndAdapter;
+    private PoiAdapter mStartAdapter;
+    private ILbsLayer mLbsLayer;
+    private LocationInfo mStartLocation;
+    private LocationInfo mEndLocation;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -70,6 +85,122 @@ public class PublishDriveActivity extends BaseActivity {
         ButterKnife.bind(this);
         setBackBtn();
         setTitle("信息填写");
+        // 地图服务
+        mLbsLayer = new GaodeLbsLayerImpl(this);
+        mLbsLayer.onCreate(savedInstanceState);
+
+        etChufadi.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                //  关键搜索推荐地点
+                mLbsLayer.poiSearch(s.toString(), new ILbsLayer.OnSearchedListener() {
+                    @Override
+                    public void onSearched(List<LocationInfo> results) {
+                        // 更新列表
+                        updatePoiList(results, true);
+                    }
+
+                    @Override
+                    public void onError(int rCode) {
+
+                    }
+                });
+            }
+        });
+
+        etMudidi.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                //  关键搜索推荐地点
+                mLbsLayer.poiSearch(s.toString(), new ILbsLayer.OnSearchedListener() {
+                    @Override
+                    public void onSearched(List<LocationInfo> results) {
+                        // 更新列表
+                        updatePoiList(results, false);
+                    }
+
+                    @Override
+                    public void onError(int rCode) {
+
+                    }
+                });
+            }
+        });
+    }
+
+    /**
+     * 更新 POI 列表
+     *
+     * @param results
+     */
+    private void updatePoiList(final List<LocationInfo> results, boolean isStart) {
+
+        List<String> listString = new ArrayList<String>();
+        for (int i = 0; i < results.size(); i++) {
+            listString.add(results.get(i).getName());
+        }
+        if (isStart){
+            if (mStartAdapter == null) {
+                mStartAdapter = new PoiAdapter(getApplicationContext(), listString);
+                etChufadi.setAdapter(mStartAdapter);
+            } else {
+                mStartAdapter.setData(listString);
+            }
+        } else{
+            if (mEndAdapter == null) {
+                mEndAdapter = new PoiAdapter(getApplicationContext(), listString);
+                etMudidi.setAdapter(mEndAdapter);
+            } else {
+                mEndAdapter.setData(listString);
+            }
+        }
+
+        if (isStart){
+            etChufadi.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+//                ToastUtils.showSuccess(PublishDriveActivity.this, results.get(position).getName());
+                    //  记录终点
+                    mStartLocation = results.get(position);
+                    mStartLocation.setKey("10000end");
+                }
+            });
+            mStartAdapter.notifyDataSetChanged();
+        }else {
+            etMudidi.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+//                ToastUtils.showSuccess(PublishDriveActivity.this, results.get(position).getName());
+                    //  记录终点
+                    mEndLocation = results.get(position);
+                    mEndLocation.setKey("10000start");
+                }
+            });
+            mEndAdapter.notifyDataSetChanged();
+        }
+
     }
 
     private void doPost() {
@@ -84,9 +215,8 @@ public class PublishDriveActivity extends BaseActivity {
             driverOrder.setState(0);
             driverOrder.setArrivalTime(etDaodashijian.getText().toString());
             driverOrder.setDriverId(SharedPreferenceUtil.instance(this).getString(Constant.USER_ID));
-            driverOrder.setDriverName(SharedPreferenceUtil.instance(this).getString(Constant.NAME_USER));
-            driverOrder.setStartPointLat("11111");
-            driverOrder.setStartPointLng("22222");
+            driverOrder.setStartPointLat(String.valueOf( mStartLocation.getLatitude()));
+            driverOrder.setStartPointLng(String.valueOf( mStartLocation.getLongitude()));
             driverOrder.setPathways(etTujindi.getText().toString());
             driverOrder.setHopeGoodsClass(etHuowuleibie.getText().toString());
             driverOrder.setFreightLimit(etYunfeixianzhi.getText().toString());
@@ -94,12 +224,13 @@ public class PublishDriveActivity extends BaseActivity {
             driverOrder.setDestination(etMudidi.getText().toString());
 
             driverOrder.setDepartureTime(etFacheshijian.getText().toString());
-            driverOrder.setEndPointLat("33333");
-            driverOrder.setEndPointLng("444444");
+            driverOrder.setEndPointLat(String.valueOf( mEndLocation.getLatitude()));
+            driverOrder.setEndPointLng(String.valueOf( mEndLocation.getLongitude()));
             driverOrder.setDeparturePlace(etChufadi.getText().toString());
             driverOrder.setCarSize(etChexianchicun.getText().toString());
             driverOrder.setCarModel(etQichexinhao.getText().toString());
             driverOrder.setTransportTonnage(etYunshudunwei.getText().toString());
+            driverOrder.setDriverName(SharedPreferenceUtil.instance(this).getString(Constant.NAME_USER));
             driverOrder.save(new SaveListener<String>() {
                                  @Override
                                  public void done(String s, BmobException e) {
@@ -136,7 +267,7 @@ public class PublishDriveActivity extends BaseActivity {
         pvOptions.show();
     }
 
-    @OnClick({R.id.et_yunfeixianzhi, R.id.btn_adddrive,R.id.et_daodashijian,R.id.et_facheshijian})
+    @OnClick({R.id.et_yunfeixianzhi, R.id.btn_adddrive, R.id.et_daodashijian, R.id.et_facheshijian})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.et_yunfeixianzhi:
@@ -155,29 +286,29 @@ public class PublishDriveActivity extends BaseActivity {
             case R.id.btn_adddrive:
                 doPost();
                 break;
-                case R.id.et_daodashijian:
-                    TimePickerView pvTime = new TimePickerBuilder(PublishDriveActivity.this, new OnTimeSelectListener() {
-                        @Override
-                        public void onTimeSelect(Date date, View v) {
-                            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-                            etDaodashijian.setText(sdf.format(date));
-                        }
-                    })
-                            .setTextColorCenter(getResources().getColor(R.color.blue)) //设置选中项文字颜色
-                            .build();
-                    pvTime.show();
+            case R.id.et_daodashijian:
+                TimePickerView pvTime = new TimePickerBuilder(PublishDriveActivity.this, new OnTimeSelectListener() {
+                    @Override
+                    public void onTimeSelect(Date date, View v) {
+                        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                        etDaodashijian.setText(sdf.format(date));
+                    }
+                })
+                        .setTextColorCenter(getResources().getColor(R.color.blue)) //设置选中项文字颜色
+                        .build();
+                pvTime.show();
                 break;
-                case R.id.et_facheshijian:
-                    TimePickerView pvTimetwo = new TimePickerBuilder(PublishDriveActivity.this, new OnTimeSelectListener() {
-                        @Override
-                        public void onTimeSelect(Date date, View v) {
-                            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-                            etFacheshijian.setText(sdf.format(date));
-                        }
-                    })
-                            .setTextColorCenter(getResources().getColor(R.color.blue)) //设置选中项文字颜色
-                            .build();
-                    pvTimetwo.show();
+            case R.id.et_facheshijian:
+                TimePickerView pvTimetwo = new TimePickerBuilder(PublishDriveActivity.this, new OnTimeSelectListener() {
+                    @Override
+                    public void onTimeSelect(Date date, View v) {
+                        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                        etFacheshijian.setText(sdf.format(date));
+                    }
+                })
+                        .setTextColorCenter(getResources().getColor(R.color.blue)) //设置选中项文字颜色
+                        .build();
+                pvTimetwo.show();
                 break;
         }
     }
