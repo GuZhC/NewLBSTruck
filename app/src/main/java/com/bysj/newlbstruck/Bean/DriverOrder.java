@@ -23,6 +23,9 @@ public class DriverOrder  extends BmobObject {
     private String CarSize;
     private String CarModel;
     private String TransportTonnage;
+    private Integer state;
+    private String UserId;
+    private String UserOrderId;
 
     public String getArrivalTime() {
         return ArrivalTime;
@@ -150,5 +153,29 @@ public class DriverOrder  extends BmobObject {
 
     public void setTransportTonnage(String transportTonnage) {
         TransportTonnage = transportTonnage;
+    }
+
+    public Integer getState() {
+        return state;
+    }
+
+    public void setState(Integer state) {
+        this.state = state;
+    }
+
+    public String getUserId() {
+        return UserId;
+    }
+
+    public void setUserId(String userId) {
+        UserId = userId;
+    }
+
+    public String getUserOrderId() {
+        return UserOrderId;
+    }
+
+    public void setUserOrderId(String userOrderId) {
+        UserOrderId = userOrderId;
     }
 }

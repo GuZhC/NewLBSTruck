@@ -81,6 +81,7 @@ public class PublishDriveActivity extends BaseActivity {
             ToastUtils.showError(PublishDriveActivity.this, "请填写完整信息");
         } else {
             DriverOrder driverOrder = new DriverOrder();
+            driverOrder.setState(0);
             driverOrder.setArrivalTime(etDaodashijian.getText().toString());
             driverOrder.setDriverId(SharedPreferenceUtil.instance(this).getString(Constant.USER_ID));
             driverOrder.setStartPointLat("11111");

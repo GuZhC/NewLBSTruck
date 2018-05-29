@@ -125,6 +125,7 @@ public class PublishActivity extends BaseActivity {
         } else {
 
             UserOrder userOrder = new UserOrder();
+            userOrder.setState(0);
             userOrder.setCategoryGoods(etAddgoodsType.getText().toString());
             userOrder.setUserId(SharedPreferenceUtil.instance(this).getString(Constant.USER_ID));
             userOrder.setStartPointLat("11111");

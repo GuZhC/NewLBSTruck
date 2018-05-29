@@ -2,16 +2,22 @@ package com.bysj.newlbstruck.Activity;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.TextView;
 
 import com.bysj.newlbstruck.Bean.DriverOrder;
+import com.bysj.newlbstruck.Bean.User;
 import com.bysj.newlbstruck.Bean.UserOrder;
 import com.bysj.newlbstruck.R;
+import com.bysj.newlbstruck.utils.StateEnum;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import cn.bmob.v3.BmobQuery;
+import cn.bmob.v3.exception.BmobException;
+import cn.bmob.v3.listener.QueryListener;
 
 public class DriverOrderDetailActivity extends BaseActivity {
     private DriverOrder driverOrder;
@@ -38,6 +44,12 @@ public class DriverOrderDetailActivity extends BaseActivity {
     TextView etYunshudunwei;
     @BindView(R.id.et_daodashijian)
     TextView etDaodashijian;
+    @BindView(R.id.et_order_state)
+    TextView etOrderState;
+    @BindView(R.id.et_driver)
+    TextView eTDriver;
+    @BindView(R.id.et_route)
+    TextView etRoute;
     
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,8 +58,8 @@ public class DriverOrderDetailActivity extends BaseActivity {
         ButterKnife.bind(this);
         setBackBtn();
         setTitle("订单详情");
-
         initDetail();
+        setState();
     }
 
     private void initDetail() {
@@ -64,5 +76,40 @@ public class DriverOrderDetailActivity extends BaseActivity {
         etYunshudunwei.setText(driverOrder.getTransportTonnage());
         etDaodashijian.setText(driverOrder.getArrivalTime());
 
+    }
+
+    private void setState() {
+        etOrderState.setText(StateEnum.getState(driverOrder.getState()));
+        if (driverOrder.getDriverId() != null) {
+            BmobQuery<User> query = new BmobQuery<User>();
+            query.getObject(driverOrder.getUserId(), new QueryListener<User>() {
+                @Override
+                public void done(User object, BmobException e) {
+                    if (e == null) {
+                        eTDriver.setText(object.getUsername());
+                    } else {
+                        Log.i("bmob", "失败：" + e.getMessage() + "," + e.getErrorCode());
+                    }
+                }
+            });
+        }else {
+            eTDriver.setText("暂无");
+        }
+        if (driverOrder.getUserOrderId() != null) {
+            BmobQuery<UserOrder> query = new BmobQuery<UserOrder>();
+            query.getObject(driverOrder.getUserOrderId(), new QueryListener<UserOrder>() {
+                @Override
+                public void done(UserOrder object, BmobException e) {
+                    if (e == null) {
+                        etRoute.setText(object.getDeliveryPlace() + "——>" + object.getReceiptPlace());
+                    } else {
+                        Log.i("bmob", "失败：" + e.getMessage() + "," + e.getErrorCode());
+                    }
+                }
+
+            });
+        }else {
+            eTDriver.setText("暂无");
+        }
     }
 }

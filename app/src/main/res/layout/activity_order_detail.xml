@@ -14,7 +14,85 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="35dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="120dp"
+                android:layout_height="match_parent"
+                android:gravity="fill_vertical"
+                android:text="订单状态"
+                android:textColor="@color/textBlack"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/et_order_state"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@null"
+                android:gravity="end|center_vertical"
+                android:textColor="@color/textBlack"
+                android:textSize="14sp"
+                />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="120dp"
+                android:layout_height="match_parent"
+                android:gravity="fill_vertical"
+                android:text="接单司机"
+                android:textColor="@color/textBlack"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/et_driver"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@null"
+                android:gravity="end|center_vertical"
+                android:textColor="@color/textBlack"
+                android:textSize="14sp"
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="120dp"
+                android:layout_height="match_parent"
+                android:gravity="fill_vertical"
+                android:text="司机路线"
+                android:textColor="@color/textBlack"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/et_route"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@null"
+                android:gravity="end|center_vertical"
+                android:textColor="@color/textBlack"
+                android:textSize="14sp"
+                />
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="10dp"
+            android:background="@color/lightGray" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
             android:orientation="horizontal">
 
             <TextView
@@ -43,7 +121,7 @@
             android:background="@color/line_color" />
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="35dp"
             android:orientation="horizontal">
 
             <TextView
@@ -73,7 +151,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="35dp"
             android:orientation="horizontal">
 
             <TextView
@@ -103,7 +181,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="35dp"
             android:orientation="horizontal">
 
             <TextView
@@ -133,7 +211,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="35dp"
             android:orientation="horizontal">
 
             <TextView
@@ -163,7 +241,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="35dp"
             android:orientation="horizontal">
 
             <TextView
@@ -192,7 +270,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="35dp"
             android:orientation="horizontal">
 
             <TextView
@@ -222,7 +300,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="35dp"
             android:orientation="horizontal">
 
             <TextView
@@ -252,7 +330,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="35dp"
             android:orientation="horizontal">
 
             <TextView
@@ -282,7 +360,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="35dp"
             android:orientation="horizontal">
 
             <TextView

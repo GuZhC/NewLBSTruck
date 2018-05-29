@@ -4,6 +4,7 @@ import android.support.annotation.Nullable;
 
 import com.bysj.newlbstruck.Bean.UserOrder;
 import com.bysj.newlbstruck.R;
+import com.bysj.newlbstruck.utils.StateEnum;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 
@@ -22,8 +23,12 @@ public class OrderAdapter extends BaseQuickAdapter<UserOrder, BaseViewHolder> {
     @Override
     protected void convert(BaseViewHolder helper, UserOrder item) {
         helper.setText(R.id.tv_nearby_recycler_title, item.getObjectId());
-        helper.setText(R.id.tv_nearby_recycler_send, item.getDeliveryTime());
-        helper.setText(R.id.tv_nearby_recycler_access, item.getDeliveryPlace());
-        helper.setText(R.id.tv_nearby_recycler_time, item.getReceiptPlace());
+        helper.setText(R.id.tv_nearby_recycler_send, item.getDeliveryPlace());
+        helper.setText(R.id.tv_nearby_recycler_access, item.getReceiptPlace());
+        for( StateEnum stateEnum : StateEnum.values()){
+            if(stateEnum.getValue() == item.getState()){
+                helper.setText(R.id.tv_nearby_recycler_time, stateEnum.getName());
+            }
+        }
     }
 }
