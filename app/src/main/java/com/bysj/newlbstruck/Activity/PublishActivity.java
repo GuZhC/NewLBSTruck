@@ -3,9 +3,13 @@ package com.bysj.newlbstruck.Activity;
 import android.content.Context;
 import android.os.Bundle;
 import android.os.IBinder;
+import android.text.Editable;
 import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.AdapterView;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -19,10 +23,15 @@ import com.bigkoo.pickerview.view.TimePickerView;
 import com.bysj.newlbstruck.Bean.UserOrder;
 import com.bysj.newlbstruck.Constant;
 import com.bysj.newlbstruck.R;
+import com.bysj.newlbstruck.adapter.PoiAdapter;
+import com.bysj.newlbstruck.lbs.GaodeLbsLayerImpl;
+import com.bysj.newlbstruck.lbs.ILbsLayer;
+import com.bysj.newlbstruck.lbs.LocationInfo;
 import com.bysj.newlbstruck.utils.SharedPreferenceUtil;
 import com.bysj.newlbstruck.utils.ToastUtils;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
@@ -54,12 +63,17 @@ public class PublishActivity extends BaseActivity {
     @BindView(R.id.et_addgoods_money)
     TextView etAddgoodsMoney;
     @BindView(R.id.et_addgoods_location)
-    EditText etAddgoodsLocation;
+    AutoCompleteTextView etChufadi;
     @BindView(R.id.et_addgoods_locationtwo)
-    EditText etAddgoodsLocationtwo;
+    AutoCompleteTextView etMudidi;
     @BindView(R.id.btn_addgoods)
     Button btnAddgoods;
 
+    private PoiAdapter mEndAdapter;
+    private PoiAdapter mStartAdapter;
+    private ILbsLayer mLbsLayer;
+    private LocationInfo mStartLocation;
+    private LocationInfo mEndLocation;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -67,7 +81,124 @@ public class PublishActivity extends BaseActivity {
         ButterKnife.bind(this);
         setBackBtn();
         setTitle("信息填写");
+
+        mLbsLayer = new GaodeLbsLayerImpl(this);
+        mLbsLayer.onCreate(savedInstanceState);
+
+        etChufadi.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                //  关键搜索推荐地点
+                mLbsLayer.poiSearch(s.toString(), new ILbsLayer.OnSearchedListener() {
+                    @Override
+                    public void onSearched(List<LocationInfo> results) {
+                        // 更新列表
+                        updatePoiList(results, true);
+                    }
+
+                    @Override
+                    public void onError(int rCode) {
+
+                    }
+                });
+            }
+        });
+
+        etMudidi.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                //  关键搜索推荐地点
+                mLbsLayer.poiSearch(s.toString(), new ILbsLayer.OnSearchedListener() {
+                    @Override
+                    public void onSearched(List<LocationInfo> results) {
+                        // 更新列表
+                        updatePoiList(results, false);
+                    }
+
+                    @Override
+                    public void onError(int rCode) {
+
+                    }
+                });
+            }
+        });
     }
+
+    /**
+     * 更新 POI 列表
+     *
+     * @param results
+     */
+    private void updatePoiList(final List<LocationInfo> results, boolean isStart) {
+
+        List<String> listString = new ArrayList<String>();
+        for (int i = 0; i < results.size(); i++) {
+            listString.add(results.get(i).getName());
+        }
+        if (isStart){
+            if (mStartAdapter == null) {
+                mStartAdapter = new PoiAdapter(getApplicationContext(), listString);
+                etChufadi.setAdapter(mStartAdapter);
+            } else {
+                mStartAdapter.setData(listString);
+            }
+        } else{
+            if (mEndAdapter == null) {
+                mEndAdapter = new PoiAdapter(getApplicationContext(), listString);
+                etMudidi.setAdapter(mEndAdapter);
+            } else {
+                mEndAdapter.setData(listString);
+            }
+        }
+
+        if (isStart){
+            etChufadi.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+//                ToastUtils.showSuccess(PublishDriveActivity.this, results.get(position).getName());
+                    //  记录终点
+                    mStartLocation = results.get(position);
+                    mStartLocation.setKey("10000end");
+                }
+            });
+            mStartAdapter.notifyDataSetChanged();
+        }else {
+            etMudidi.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+//                ToastUtils.showSuccess(PublishDriveActivity.this, results.get(position).getName());
+                    //  记录终点
+                    mEndLocation = results.get(position);
+                    mEndLocation.setKey("10000start");
+                }
+            });
+            mEndAdapter.notifyDataSetChanged();
+        }
+
+    }
+
 
     @OnClick({R.id.et_addgoods_time, R.id.et_addgoods_time_two, R.id.et_addgoods_money, R.id.btn_addgoods})
     public void onViewClicked(View view) {
@@ -119,8 +250,8 @@ public class PublishActivity extends BaseActivity {
         if (TextUtils.isEmpty(etAddgoodsNum.getText().toString()) || TextUtils.isEmpty(etAddgoodsWeight.getText().toString()) ||
                 TextUtils.isEmpty(etAddgoodsBaozhuangtype.getText().toString()) || TextUtils.isEmpty(etAddgoodsGoodssize.getText().toString()) ||
                 TextUtils.isEmpty(etAddgoodsTime.getText().toString()) || TextUtils.isEmpty(etAddgoodsTimeTwo.getText().toString()) ||
-                TextUtils.isEmpty(etAddgoodsMoney.getText().toString()) || TextUtils.isEmpty(etAddgoodsLocation.getText().toString()) ||
-                TextUtils.isEmpty(etAddgoodsLocationtwo.getText().toString()) || TextUtils.isEmpty(etAddgoodsType.getText().toString())) {
+                TextUtils.isEmpty(etAddgoodsMoney.getText().toString()) || TextUtils.isEmpty(etChufadi.getText().toString()) ||
+                TextUtils.isEmpty(etMudidi.getText().toString()) || TextUtils.isEmpty(etAddgoodsType.getText().toString())) {
             ToastUtils.showError(PublishActivity.this, "请填写完整信息");
         } else {
 
@@ -129,20 +260,21 @@ public class PublishActivity extends BaseActivity {
             userOrder.setCategoryGoods(etAddgoodsType.getText().toString());
             userOrder.setUserId(SharedPreferenceUtil.instance(this).getString(Constant.USER_ID));
             userOrder.setUserName(SharedPreferenceUtil.instance(this).getString(Constant.NAME_USER));
-            userOrder.setStartPointLat("11111");
-            userOrder.setStartPointLng("22222");
+            userOrder.setStartPointLat( String.valueOf( mStartLocation.getLatitude()));
+            userOrder.setStartPointLng(String.valueOf( mStartLocation.getLongitude()));
             userOrder.setReceiptTime(etAddgoodsTimeTwo.getText().toString());
-            userOrder.setReceiptPlace(etAddgoodsLocationtwo.getText().toString());
+            userOrder.setReceiptPlace(etMudidi.getText().toString());
             userOrder.setPackingForm(etAddgoodsBaozhuangtype.getText().toString());
             userOrder.setPackagingSize(etAddgoodsGoodssize.getText().toString());
             userOrder.setNumber(etAddgoodsNum.getText().toString());
 
             userOrder.setFreightLimit(etAddgoodsMoney.getText().toString());
-            userOrder.setEndPointLat("33333");
-            userOrder.setEndPointLng("444444");
+            userOrder.setEndPointLat(String.valueOf( mEndLocation.getLatitude()));
+            userOrder.setEndPointLng(String.valueOf( mEndLocation.getLongitude()));
             userOrder.setDeliveryTime(etAddgoodsTime.getText().toString());
-            userOrder.setDeliveryPlace(etAddgoodsLocation.getText().toString());
+            userOrder.setDeliveryPlace(etChufadi.getText().toString());
             userOrder.setWeight(etAddgoodsWeight.getText().toString());
+            userOrder.setUserName(SharedPreferenceUtil.instance(this).getString(Constant.NAME_USER));
             userOrder.save(new SaveListener<String>() {
                                @Override
                                public void done(String s, BmobException e) {
