@@ -104,18 +104,18 @@ public class UserDetailActivity extends BaseActivity {
         switch (view.getId()) {
             case R.id.telphone:
                 if (Build.VERSION.SDK_INT > Build.VERSION_CODES.LOLLIPOP_MR1) {//Android 6.0以上版本需要获取权限
-                requestPermissions(perms,PERMS_REQUEST_CODE);//请求权限
-            } else {
-                callPhone();
-            }
+                    requestPermissions(perms, PERMS_REQUEST_CODE);//请求权限
+                } else {
+                    callPhone();
+                }
                 break;
             case R.id.see_route:
-                Intent intent = new Intent(this,RouteActivity.class);
-                intent.putExtra("lat",userOrder.getStartPointLat());
-                intent.putExtra("lng",userOrder.getStartPointLng());
-                intent.putExtra("latend",userOrder.getEndPointLat());
-                intent.putExtra("lngend",userOrder.getEndPointLng());
-                intent.putExtra("weizhi",userOrder.getDeliveryPlace());
+                Intent intent = new Intent(this, RouteActivity.class);
+                intent.putExtra("lat", userOrder.getStartPointLat());
+                intent.putExtra("lng", userOrder.getStartPointLng());
+                intent.putExtra("latend", userOrder.getEndPointLat());
+                intent.putExtra("lngend", userOrder.getEndPointLng());
+                intent.putExtra("weizhi", userOrder.getDeliveryPlace());
                 startActivity(intent);
                 break;
             case R.id.jieta:
@@ -124,6 +124,7 @@ public class UserDetailActivity extends BaseActivity {
                 break;
         }
     }
+
     //拨打电话
     private void callPhone() {
         //检查拨打电话权限
@@ -133,6 +134,7 @@ public class UserDetailActivity extends BaseActivity {
             startActivity(intent);
         }
     }
+
     private void ReceiptOrder() {
         String userid = SharedPreferenceUtil.instance(this).getString(Constant.USER_ID);
         String username = SharedPreferenceUtil.instance(this).getString(Constant.NAME_USER);
@@ -145,6 +147,10 @@ public class UserDetailActivity extends BaseActivity {
                 public void done(BmobException e) {
                     if (e == null) {
                         ToastUtils.showSuccess(UserDetailActivity.this, "接单成功");
+                        Intent intent = new Intent(UserDetailActivity.this, OrderDetailActivity.class);
+                        intent.putExtra("orderid", userOrder.getObjectId());
+                        startActivity(intent);
+                        finish();
                     } else {
                         ToastUtils.showError(UserDetailActivity.this, "接单失败，请检查您的网络设置");
                     }

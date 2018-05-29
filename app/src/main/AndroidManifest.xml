@@ -29,9 +29,13 @@
         android:theme="@style/AppTheme">
 
 
+        <!--<meta-data-->
+            <!--android:name="com.amap.api.v2.apikey"-->
+            <!--android:value="19577cd82a506c6aa09ea90ef76a96d9" />-->
+
         <meta-data
             android:name="com.amap.api.v2.apikey"
-            android:value="19577cd82a506c6aa09ea90ef76a96d9" />
+            android:value="025e1a6665d527cf1e404db9b89dda2f" />
 
         <activity android:name=".Activity.MainActivity" />
         <activity
@@ -39,11 +43,7 @@
         <activity
             android:name=".Activity.WelcomeActivity"
             android:theme="@style/AppTheme.NoBar">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity android:name=".Activity.RegisterActivity" />
         <activity android:name=".Activity.AboutActivity" />
@@ -55,6 +55,16 @@
         <activity android:name=".Activity.UserDetailActivity" />
         <activity android:name=".Activity.DriverDetailActivity"></activity>
         <activity android:name=".Activity.RouteActivity"></activity>
+        <activity android:name=".Activity.DriverSendActivity"></activity>
+
+        <activity android:name=".Activity.SplashActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".Activity.GuideActivity"></activity>
 
         <!-- 定位需要的服务 使用2.0的定位需要加上这个 -->
         <service android:name="com.amap.api.location.APSService" />
