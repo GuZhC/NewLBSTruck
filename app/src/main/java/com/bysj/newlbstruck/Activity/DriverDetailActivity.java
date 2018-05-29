@@ -3,8 +3,6 @@ package com.bysj.newlbstruck.Activity;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
-import android.widget.Button;
-import android.widget.TextView;
 import android.widget.TextView;
 
 import com.bysj.newlbstruck.Bean.DriverOrder;
@@ -23,7 +21,7 @@ import cn.bmob.v3.BmobQuery;
 import cn.bmob.v3.exception.BmobException;
 import cn.bmob.v3.listener.QueryListener;
 
-public class DriverOrderDetailActivity extends BaseActivity {
+public class DriverDetailActivity extends BaseActivity {
     private DriverOrder driverOrder;
 
     @BindView(R.id.et_tujindi)
@@ -48,24 +46,18 @@ public class DriverOrderDetailActivity extends BaseActivity {
     TextView etYunshudunwei;
     @BindView(R.id.et_daodashijian)
     TextView etDaodashijian;
-    @BindView(R.id.et_order_state)
-    TextView etOrderState;
-    @BindView(R.id.et_driver)
-    TextView eTDriver;
-    @BindView(R.id.et_route)
-    TextView etRoute;
+    @BindView(R.id.user_name)
+    TextView user_name;
     @BindView(R.id.reflesh)
     SmartRefreshLayout reflesh;
-    
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_driver_order_detail);
+        setContentView(R.layout.activity_driver_detail);
         ButterKnife.bind(this);
         setBackBtn();
-        setTitle("订单详情");
+        setTitle("司机详情");
         initDetail();
-        setState();
         reflesh.setOnLoadmoreListener(new OnLoadmoreListener() {
             @Override
             public void onLoadmore(RefreshLayout refreshlayout) {
@@ -75,12 +67,10 @@ public class DriverOrderDetailActivity extends BaseActivity {
             @Override
             public void onRefresh(RefreshLayout refreshlayout) {
                 initDetail();
-                setState();
                 reflesh.finishRefresh(true);
             }
         });
     }
-
     private void initDetail() {
         driverOrder = (DriverOrder) getIntent().getSerializableExtra("order");
         etTujindi.setText(driverOrder.getPathways());
@@ -94,41 +84,7 @@ public class DriverOrderDetailActivity extends BaseActivity {
         etQichexinhao.setText(driverOrder.getCarModel());
         etYunshudunwei.setText(driverOrder.getTransportTonnage());
         etDaodashijian.setText(driverOrder.getArrivalTime());
+        user_name.setText(driverOrder.getDriverName());
 
-    }
-
-    private void setState() {
-        etOrderState.setText(StateEnum.getState(driverOrder.getState()));
-        if (driverOrder.getDriverId() != null) {
-            BmobQuery<User> query = new BmobQuery<User>();
-            query.getObject(driverOrder.getUserId(), new QueryListener<User>() {
-                @Override
-                public void done(User object, BmobException e) {
-                    if (e == null) {
-                        eTDriver.setText(object.getUsername());
-                    } else {
-                        Log.i("bmob", "失败：" + e.getMessage() + "," + e.getErrorCode());
-                    }
-                }
-            });
-        }else {
-            eTDriver.setText("暂无");
-        }
-        if (driverOrder.getUserOrderId() != null) {
-            BmobQuery<UserOrder> query = new BmobQuery<UserOrder>();
-            query.getObject(driverOrder.getUserOrderId(), new QueryListener<UserOrder>() {
-                @Override
-                public void done(UserOrder object, BmobException e) {
-                    if (e == null) {
-                        etRoute.setText(object.getDeliveryPlace() + "——>" + object.getReceiptPlace());
-                    } else {
-                        Log.i("bmob", "失败：" + e.getMessage() + "," + e.getErrorCode());
-                    }
-                }
-
-            });
-        }else {
-            eTDriver.setText("暂无");
-        }
     }
 }

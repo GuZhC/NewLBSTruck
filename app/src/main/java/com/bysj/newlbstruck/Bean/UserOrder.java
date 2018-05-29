@@ -27,7 +27,7 @@ public class UserOrder  extends BmobObject implements Serializable {
     private String weight;
     private String DriverId;
     private String DriverOrderId;
-    private Integer state;
+    private int state;
 
     public String getCategoryGoods() {
         return CategoryGoods;
@@ -149,11 +149,11 @@ public class UserOrder  extends BmobObject implements Serializable {
         this.weight = weight;
     }
 
-    public Integer getState() {
+    public int getState() {
         return state;
     }
 
-    public void setState(Integer state) {
+    public void setState(int state) {
         this.state = state;
     }
 

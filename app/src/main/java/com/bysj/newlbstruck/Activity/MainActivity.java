@@ -1,13 +1,13 @@
 package com.bysj.newlbstruck.Activity;
 
 import android.os.Bundle;
-import android.support.v4.app.ListFragment;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.LinearLayout;
 
 import com.ashokvarma.bottomnavigation.BottomNavigationBar;
 import com.ashokvarma.bottomnavigation.BottomNavigationItem;
+import com.bysj.newlbstruck.Fragment.ListFragmen;
 import com.bysj.newlbstruck.Fragment.MeFragment;
 import com.bysj.newlbstruck.Fragment.MyoderFragmen;
 import com.bysj.newlbstruck.Fragment.NeaberFragment;
@@ -87,7 +87,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
-        adapter.addFragment(new ListFragment());
+        adapter.addFragment(new ListFragmen());
         adapter.addFragment(new MyoderFragmen());
         adapter.addFragment(new NeaberFragment());
         adapter.addFragment(new MeFragment());

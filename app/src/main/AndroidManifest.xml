@@ -50,8 +50,10 @@
         <activity android:name=".Activity.ModifyUserActivity" />
         <activity android:name=".Activity.PublishActivity" />
         <activity android:name=".Activity.OrderDetailActivity" />
-        <activity android:name=".Activity.DriverOrderDetailActivity"></activity>
-        <activity android:name=".Activity.PublishDriveActivity"></activity>
+        <activity android:name=".Activity.DriverOrderDetailActivity" />
+        <activity android:name=".Activity.PublishDriveActivity" />
+        <activity android:name=".Activity.UserDetailActivity" />
+        <activity android:name=".Activity.DriverDetailActivity"></activity>
 
         <!-- 定位需要的服务 使用2.0的定位需要加上这个 -->
         <service android:name="com.amap.api.location.APSService" />
