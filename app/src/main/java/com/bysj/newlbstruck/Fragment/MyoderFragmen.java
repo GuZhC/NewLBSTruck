@@ -132,7 +132,7 @@ public class MyoderFragmen extends BaseFragment {
                         @Override
                         public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
                             Intent intent = new Intent(getContext(), OrderDetailActivity.class);
-                            intent.putExtra("order", datas.get(position));
+                            intent.putExtra("orderid", datas.get(position).getObjectId());
                             startActivity(intent);
                         }
                     });
