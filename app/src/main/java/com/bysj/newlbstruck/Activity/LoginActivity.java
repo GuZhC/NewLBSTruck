@@ -102,6 +102,7 @@ public class LoginActivity extends BaseActivity {
                 if (e == null) {
                     SharedPreferenceUtil.instance(LoginActivity.this).saveString(Constant.USER_ID, s.getObjectId());
                     SharedPreferenceUtil.instance(LoginActivity.this).saveBoolean(Constant.IS_DRIV, s.isDrive());
+                    SharedPreferenceUtil.instance(LoginActivity.this).saveString(Constant.NAME_USER, s.getUsername());
                     startActivity(new Intent(LoginActivity.this, MainActivity.class));
                     MyLoader.stopLoading();
                     finish();

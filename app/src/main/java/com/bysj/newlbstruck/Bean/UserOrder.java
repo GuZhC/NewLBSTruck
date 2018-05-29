@@ -11,6 +11,7 @@ import cn.bmob.v3.BmobObject;
 public class UserOrder  extends BmobObject implements Serializable {
     private String CategoryGoods;
     private String UserId;
+    private String UserName;
     private String StartPointLng;
     private String StartPointLat;
     private String ReceiptTime;
@@ -170,5 +171,13 @@ public class UserOrder  extends BmobObject implements Serializable {
 
     public void setDriverOrderId(String driverOrderId) {
         DriverOrderId = driverOrderId;
+    }
+
+    public String getUserName() {
+        return UserName;
+    }
+
+    public void setUserName(String userName) {
+        UserName = userName;
     }
 }

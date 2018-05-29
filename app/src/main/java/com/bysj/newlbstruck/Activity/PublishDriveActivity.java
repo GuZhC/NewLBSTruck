@@ -84,6 +84,7 @@ public class PublishDriveActivity extends BaseActivity {
             driverOrder.setState(0);
             driverOrder.setArrivalTime(etDaodashijian.getText().toString());
             driverOrder.setDriverId(SharedPreferenceUtil.instance(this).getString(Constant.USER_ID));
+            driverOrder.setDriverName(SharedPreferenceUtil.instance(this).getString(Constant.NAME_USER));
             driverOrder.setStartPointLat("11111");
             driverOrder.setStartPointLng("22222");
             driverOrder.setPathways(etTujindi.getText().toString());

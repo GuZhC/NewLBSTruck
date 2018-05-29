@@ -128,6 +128,7 @@ public class PublishActivity extends BaseActivity {
             userOrder.setState(0);
             userOrder.setCategoryGoods(etAddgoodsType.getText().toString());
             userOrder.setUserId(SharedPreferenceUtil.instance(this).getString(Constant.USER_ID));
+            userOrder.setUserName(SharedPreferenceUtil.instance(this).getString(Constant.NAME_USER));
             userOrder.setStartPointLat("11111");
             userOrder.setStartPointLng("22222");
             userOrder.setReceiptTime(etAddgoodsTimeTwo.getText().toString());

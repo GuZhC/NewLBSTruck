@@ -17,6 +17,7 @@ public class DriverOrder  extends BmobObject {
     private String EndPointLng;
     private String EndPointLat;
     private String DriverId;
+    private String DriverName;
     private String Destination;
     private String DepartureTime;
     private String DeparturePlace;
@@ -177,5 +178,13 @@ public class DriverOrder  extends BmobObject {
 
     public void setUserOrderId(String userOrderId) {
         UserOrderId = userOrderId;
+    }
+
+    public String getDriverName() {
+        return DriverName;
+    }
+
+    public void setDriverName(String driverName) {
+        DriverName = driverName;
     }
 }
