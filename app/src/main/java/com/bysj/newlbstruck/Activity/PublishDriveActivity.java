@@ -240,7 +240,7 @@ public class PublishDriveActivity extends BaseActivity {
                                          ToastUtils.showSuccess(PublishDriveActivity.this, "发布成功");
                                          finish();
                                      } else {
-                                         ToastUtils.showError(PublishDriveActivity.this, "请填写完整信息|" + e.getMessage());
+                                         ToastUtils.showError(PublishDriveActivity.this, "错误|" + e.getMessage()+e.getErrorCode());
                                      }
                                  }
                              }

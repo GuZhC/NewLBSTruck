@@ -381,7 +381,7 @@
                 android:layout_marginLeft="10dp"
                 android:background="@drawable/shape_circle_fogetpsw_btn_bg"
                 android:gravity="center"
-                android:text="接         他"
+                android:text="接         单"
                 android:textColor="@color/white"
                 android:textSize="16sp"
                 android:textStyle="bold" />

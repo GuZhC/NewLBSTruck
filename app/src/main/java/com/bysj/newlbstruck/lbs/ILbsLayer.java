@@ -4,6 +4,8 @@ import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.view.View;
 
+import com.amap.api.maps2d.AMap;
+
 import java.util.List;
 
 /**
@@ -31,7 +33,8 @@ public interface ILbsLayer {
     /**
      *  添加，更新标记点，包括位置、角度（通过 id 识别）
      */
-    void addOrUpdateMarker(LocationInfo locationInfo, Bitmap bitmap);
+    void addOrUpdateMarker(LocationInfo locationInfo, Bitmap bitmap,
+                           AMap.OnMarkerClickListener markerClickListener);
 
     /**
      *   获取当前城市
@@ -49,9 +52,33 @@ public interface ILbsLayer {
     }
 
     /**
+     * 路径规划完成监听
+     * Created by liuguangli on 17/3/24.
+     */
+    interface OnRouteCompleteListener {
+        void onComplete(RouteInfo result);
+    }
+    /**
+     * 绘制两点之间行车路径
+     * @param start
+     * @param end
+     * @param color
+     * @param listener
+     */
+    void driverRoute(LocationInfo start,
+                     LocationInfo end,
+                     int color,
+                     OnRouteCompleteListener listener);
+
+    /**
      * 联动搜索附近的位置
      */
     void poiSearch(String key, OnSearchedListener listener);
+    /**
+     *  移动相机到两点之间的视野范围
+     */
+    void moveCamera(LocationInfo locationInfo1,
+                    LocationInfo locationInfo2);
 
     /**
      *  生命周期函数

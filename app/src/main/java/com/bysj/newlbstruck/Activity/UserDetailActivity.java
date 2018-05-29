@@ -1,6 +1,12 @@
 package com.bysj.newlbstruck.Activity;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.net.Uri;
+import android.os.Build;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -50,6 +56,8 @@ public class UserDetailActivity extends BaseActivity {
     @BindView(R.id.user_name)
     TextView user_name;
 
+    private String[] perms = {Manifest.permission.CALL_PHONE};
+    private final int PERMS_REQUEST_CODE = 200;
 
     //    @BindView(R.id.reflesh)
 //    SmartRefreshLayout reflesh;
@@ -94,13 +102,37 @@ public class UserDetailActivity extends BaseActivity {
     @OnClick({R.id.telphone, R.id.see_route, R.id.jieta})
     public void onViewClicked(View view) {
         switch (view.getId()) {
+            case R.id.telphone:
+                if (Build.VERSION.SDK_INT > Build.VERSION_CODES.LOLLIPOP_MR1) {//Android 6.0以上版本需要获取权限
+                requestPermissions(perms,PERMS_REQUEST_CODE);//请求权限
+            } else {
+                callPhone();
+            }
+                break;
+            case R.id.see_route:
+                Intent intent = new Intent(this,RouteActivity.class);
+                intent.putExtra("lat",userOrder.getStartPointLat());
+                intent.putExtra("lng",userOrder.getStartPointLng());
+                intent.putExtra("latend",userOrder.getEndPointLat());
+                intent.putExtra("lngend",userOrder.getEndPointLng());
+                intent.putExtra("weizhi",userOrder.getDeliveryPlace());
+                startActivity(intent);
+                break;
             case R.id.jieta:
                 ToastUtils.showSuccess(UserDetailActivity.this, "系统为您接单中，请稍等");
                 ReceiptOrder();
                 break;
         }
     }
-
+    //拨打电话
+    private void callPhone() {
+        //检查拨打电话权限
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.CALL_PHONE) == PackageManager.PERMISSION_GRANTED) {
+            Intent intent = new Intent(Intent.ACTION_CALL);
+            intent.setData(Uri.parse("tel:" + userOrder.getUserPhone()));
+            startActivity(intent);
+        }
+    }
     private void ReceiptOrder() {
         String userid = SharedPreferenceUtil.instance(this).getString(Constant.USER_ID);
         String username = SharedPreferenceUtil.instance(this).getString(Constant.NAME_USER);
@@ -121,4 +153,20 @@ public class UserDetailActivity extends BaseActivity {
         }
 
     }
+
+    @Override
+    public void onRequestPermissionsResult(int permsRequestCode, String[] permissions, int[] grantResults) {
+        switch (permsRequestCode) {
+            case PERMS_REQUEST_CODE:
+                boolean storageAccepted = grantResults[0] == PackageManager.PERMISSION_GRANTED;
+                if (storageAccepted) {
+                    callPhone();
+                } else {
+                    Log.i("MainActivity", "没有权限操作这个请求");
+                }
+                break;
+
+        }
+    }
+
 }

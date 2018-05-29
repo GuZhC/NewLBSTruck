@@ -1,27 +1,29 @@
 package com.bysj.newlbstruck.Activity;
 
-import android.support.v7.app.AppCompatActivity;
+import android.Manifest;
+import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.bysj.newlbstruck.Bean.DriverOrder;
-import com.bysj.newlbstruck.Bean.User;
-import com.bysj.newlbstruck.Bean.UserOrder;
 import com.bysj.newlbstruck.R;
-import com.bysj.newlbstruck.utils.StateEnum;
-import com.scwang.smartrefresh.layout.SmartRefreshLayout;
-import com.scwang.smartrefresh.layout.api.RefreshLayout;
-import com.scwang.smartrefresh.layout.listener.OnLoadmoreListener;
-import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import cn.bmob.v3.BmobQuery;
-import cn.bmob.v3.exception.BmobException;
-import cn.bmob.v3.listener.QueryListener;
+import butterknife.OnClick;
 
 public class DriverDetailActivity extends BaseActivity {
+    @BindView(R.id.telphone)
+    Button telphone;
+    @BindView(R.id.see_route)
+    Button seeRoute;
     private DriverOrder driverOrder;
 
     @BindView(R.id.et_tujindi)
@@ -48,7 +50,10 @@ public class DriverDetailActivity extends BaseActivity {
     TextView etDaodashijian;
     @BindView(R.id.user_name)
     TextView user_name;
-//    @BindView(R.id.reflesh)
+
+    private String[] perms = {Manifest.permission.CALL_PHONE};
+    private final int PERMS_REQUEST_CODE = 200;
+    //    @BindView(R.id.reflesh)
 //    SmartRefreshLayout reflesh;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,6 +76,7 @@ public class DriverDetailActivity extends BaseActivity {
 //            }
 //        });
     }
+
     private void initDetail() {
         driverOrder = (DriverOrder) getIntent().getSerializableExtra("order");
         etTujindi.setText(driverOrder.getPathways());
@@ -86,5 +92,54 @@ public class DriverDetailActivity extends BaseActivity {
         etDaodashijian.setText(driverOrder.getArrivalTime());
         user_name.setText(driverOrder.getDriverName());
 
+    }
+
+    @OnClick({R.id.telphone, R.id.see_route})
+    public void onViewClicked(View view) {
+        switch (view.getId()) {
+            case R.id.telphone:
+                if (Build.VERSION.SDK_INT > Build.VERSION_CODES.LOLLIPOP_MR1) {//Android 6.0以上版本需要获取权限
+                    requestPermissions(perms,PERMS_REQUEST_CODE);//请求权限
+                } else {
+                    callPhone();
+                }
+
+                break;
+            case R.id.see_route:
+                Intent intent = new Intent(this,RouteActivity.class);
+                intent.putExtra("lat",driverOrder.getStartPointLat());
+                intent.putExtra("lng",driverOrder.getStartPointLng());
+                intent.putExtra("latend",driverOrder.getEndPointLat());
+                intent.putExtra("lngend",driverOrder.getEndPointLng());
+                intent.putExtra("weizhi",driverOrder.getDeparturePlace());
+                startActivity(intent);
+
+                break;
+        }
+    }
+
+    //拨打电话
+    private void callPhone() {
+        //检查拨打电话权限
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.CALL_PHONE) == PackageManager.PERMISSION_GRANTED) {
+            Intent intent = new Intent(Intent.ACTION_CALL);
+            intent.setData(Uri.parse("tel:" + driverOrder.getDriverPhone()));
+            startActivity(intent);
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int permsRequestCode, String[] permissions, int[] grantResults) {
+        switch (permsRequestCode) {
+            case PERMS_REQUEST_CODE:
+                boolean storageAccepted = grantResults[0] == PackageManager.PERMISSION_GRANTED;
+                if (storageAccepted) {
+                    callPhone();
+                } else {
+                    Log.i("MainActivity", "没有权限操作这个请求");
+                }
+                break;
+
+        }
     }
 }
