@@ -18,19 +18,29 @@
             android:textColor="@color/white"
             android:textSize="18sp" />
     </android.support.v7.widget.Toolbar>
-
+    <!--  地图容器-->
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/map_container"
+        />
     <Button
         android:id="@+id/btn_register_put"
         android:layout_width="160dp"
         android:clickable="false"
         android:layout_height="44dp"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="420dp"
         android:background="@drawable/shape_circle_fogetpsw_btn_bg"
         android:gravity="center"
         android:text="发布"
         android:textColor="@color/white"
         android:textSize="16sp"
         android:textStyle="bold" />
+    </FrameLayout>
 
 </LinearLayout>

@@ -132,6 +132,35 @@
             android:layout_width="match_parent"
             android:layout_height="0.5dp"
             android:background="@color/line_color" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="120dp"
+                android:layout_height="match_parent"
+                android:gravity="fill_vertical"
+                android:text="出发地"
+                android:textColor="@color/textBlack"
+                android:textSize="14sp" />
+
+            <AutoCompleteTextView
+                android:id="@+id/et_chufadi"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@null"
+                android:gravity="end|center_vertical"
+                android:textColor="@color/textBlack"
+                android:textSize="14sp"
+                android:hint="点击输入" />
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="@color/line_color" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -146,7 +175,7 @@
                 android:textColor="@color/textBlack"
                 android:textSize="14sp" />
 
-            <EditText
+            <AutoCompleteTextView
                 android:id="@+id/et_mudidi"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -218,35 +247,7 @@
             android:layout_height="0.5dp"
             android:background="@color/line_color" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:orientation="horizontal">
 
-            <TextView
-                android:layout_width="120dp"
-                android:layout_height="match_parent"
-                android:gravity="fill_vertical"
-                android:text="出发地"
-                android:textColor="@color/textBlack"
-                android:textSize="14sp" />
-
-            <EditText
-                android:id="@+id/et_chufadi"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@null"
-                android:gravity="end|center_vertical"
-                android:textColor="@color/textBlack"
-                android:textSize="14sp"
-                android:hint="点击输入" />
-
-        </LinearLayout>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="0.5dp"
-            android:background="@color/line_color" />
 
         <LinearLayout
             android:layout_width="match_parent"
