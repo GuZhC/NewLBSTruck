@@ -3,12 +3,12 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/wechat_bg">
+    android:background="@mipmap/welcome2">
 
     <TextView
         android:layout_marginBottom="30dp"
         android:layout_centerInParent="true"
-        android:textColor="#009ad6"
+        android:textColor="#fff"
         android:id="@+id/tv_splash"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -19,6 +19,8 @@
         android:layout_marginBottom="15dp"
         android:layout_alignParentBottom="true"
         android:gravity="center"
+        android:textColor="#fff"
+        android:textSize="20sp"
         android:text="配易通便捷物流"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />

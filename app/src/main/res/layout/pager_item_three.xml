@@ -21,7 +21,7 @@
             android:id="@+id/tv_pager_3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="強大"
+            android:text="高效"
             android:textSize="50sp"/>
 
     </LinearLayout>

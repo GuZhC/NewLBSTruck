@@ -48,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
                 .setBarBackgroundColor(R.color.white);//默认背景色
         mBottomNavigationBar
                 .addItem(new BottomNavigationItem(R.mipmap.main_icon_one, R.string.tab_one).setActiveColorResource(R.color.colorPrimary))
-                .addItem(new BottomNavigationItem(R.mipmap.main_icon_one, R.string.tab_oder).setActiveColorResource(R.color.colorPrimary))
+                .addItem(new BottomNavigationItem(R.mipmap.icon_main2, R.string.tab_oder).setActiveColorResource(R.color.colorPrimary))
                 .addItem(new BottomNavigationItem(R.mipmap.main_icon_two, R.string.tab_two).setActiveColorResource(R.color.colorPrimary))
                 .addItem(new BottomNavigationItem(R.mipmap.main_icon_four, R.string.tab_three).setActiveColorResource(R.color.colorPrimary))
                 .setFirstSelectedPosition(0)//设置默认选择的按钮
