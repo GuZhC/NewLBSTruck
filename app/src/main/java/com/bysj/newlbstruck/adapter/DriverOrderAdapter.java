@@ -25,10 +25,11 @@ public class DriverOrderAdapter  extends BaseQuickAdapter<DriverOrder, BaseViewH
         helper.setText(R.id.tv_nearby_recycler_title, item.getObjectId());
         helper.setText(R.id.tv_nearby_recycler_send, item.getDestination());
         helper.setText(R.id.tv_nearby_recycler_access, item.getDeparturePlace());
-        for( StateEnum stateEnum : StateEnum.values()){
-            if(stateEnum.getValue() == item.getState()){
-                helper.setText(R.id.tv_nearby_recycler_time, stateEnum.getName());
-            }
-        }
+//        for( StateEnum stateEnum : StateEnum.values()){
+//            if(stateEnum.getValue() == item.getState()){
+//                helper.setText(R.id.tv_nearby_recycler_time, stateEnum.getName());
+//            }
+//        }
+//        helper.setText(R.id.tv_nearby_recycler_time, StateEnum.getState(item.getState()));
     }
 }
